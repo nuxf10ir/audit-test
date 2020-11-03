@@ -1,0 +1,178 @@
+@font-face {
+    font-family: 'Berlingske Sans';
+    src:	url('./fonts/BerlingskeSans-Rg.eot');
+    src:	url('./fonts/BerlingskeSans-Rg.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/BerlingskeSans-Rg.woff2') format('woff2'),
+    url('./fonts/BerlingskeSans-Rg.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Berlingske Sans';
+    src:	url('./fonts/BerlingskeSans-Blk.eot');
+    src:	url('./fonts/BerlingskeSans-Blk.eot?#iefix') format('embedded-opentype');
+    src:	url('./fonts/BerlingskeSans-Blk.woff2')format('woff2'),
+    url('./fonts/BerlingskeSans-Blk.woff')format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+
+.cardgame {
+    width: 821px;
+    height: 528px;
+    margin: 100px auto;
+}
+
+#card-front, #card-back {
+    background: #fff;
+}
+
+.card {
+    font-family: 'Berlingske Sans', Arial, Helvetica, sans-serif;
+}
+
+.card-content {
+    width: 693px;
+    height: 428px;
+    padding: 0;
+    margin: 30px;
+    position: relative;
+    background: #FFFFFF;
+}
+
+.card-content-wrapper {
+    padding: 30px 50px;
+}
+
+.card-content__bordered {
+    border: 1px solid red;
+}
+
+.card-content__title {
+    font-size: 26px;
+    line-height: 34px;
+    font-weight: 900;
+    margin: 60px 0 20px;
+    letter-spacing: 1.2px;
+}
+
+.card-content__type-question .card-content__title {
+    margin: 40px 0 20px;
+}
+
+.card-content__type-answer .card-content__title {
+    font-size: 24px;
+    line-height: 32px;
+    margin: 29px 0 15px 0;
+    font-weight: 400;
+    width: 380px;
+    letter-spacing: .6px;
+}
+
+.card-content__text {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.card-content__type-answer .card-content__text {
+    width: auto;
+}
+
+.card-footer {
+    position: absolute;
+    bottom: 90px;
+    width: 100%;
+    height: 50px;
+    text-align: left;
+}
+
+.card-step {
+    position: relative;
+    top: 0;
+    width: 100%;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: left;
+    background: antiquewhite;
+    padding: 5px 10px;
+    margin: 0 -10px;
+}
+
+.card-button {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 22px;
+    background: #fbe9e4;
+    border: 1px solid #ca4131;
+    box-sizing: content-box;
+    font-size: 19px;
+    margin: 0 0 0 50px;
+}
+
+.card-button:hover {
+    background: #ca4131;
+    color: #FFFFFF;
+}
+
+.card-content_variants {
+    padding: 16px 0 0 0;
+    width: 440px;
+    list-style: none;
+    font-size: 14px;
+    line-height: 18px;
+    counter-reset: list;
+}
+
+
+
+.card-content_variant {
+    margin: 0 0 18px 0;
+}
+
+.card-content_variant:last-child {
+    margin: 0;
+}
+
+.card-content_variant a {
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ca4131;
+    letter-spacing: .1px;
+    padding: 9px 14px;
+    display: block;
+    background: #fbe9e4;
+}
+
+
+
+.card-content_variant a:hover {
+    background: #ca4131;
+    color: #FFFFFF;
+}
+
+.answers-list {
+    list-style: none;
+    padding: 0;
+}
+
+.answers-list li {
+    margin: 5px 0;
+}
+
+.answers-list li:before{
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background-color: #ca4131;
+    border-radius: 2px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+

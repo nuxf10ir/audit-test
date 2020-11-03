@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Финансовый директор</title>
+    <link rel="stylesheet" type="text/css" href="css/loader.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper__in">
+            <div id="cardgame" class="cardgame">
+                <div class="cardgame__in">
+                    <div id="card" class="card">
+                        <div id="card-front" class="front">
+                            <div class="card-content">
+                                <div class="lds-css ng-scope">
+                                    <div class="lds-ripple">
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="card-back" class="back">
+                            <div class="card-content card-content__type-start card-content__bordered">
+                                <div class="card-content-wrapper">
+                                    <div class="card-content__title">
+                                        Тест «Сколько рабочего времени можно сэкономить»
+                                    </div>
+                                    <div class="card-content__text">
+                                        Проверьте, сколько Вашего рабочего времени помогут освободить правила тайм-менеджмента
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <a class="card-button js-to-question" data-question="1">Узнать</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script id="question__tmpl" type="text/x-javascript-tmpl">
+
+
+
+        <div class="card-content card-content__type-question card-content__bordered">
+
+            <div class="card-content-wrapper">
+
+                <div class="card-step">
+                    <span class="card-step__in">Вопрос {{id}} из 11</span>
+                </div>
+
+                <div class="card-content__title">
+                    {{text}}
+                </div>
+                <div class="card-content__text">
+                    <ul class="card-content_variants">
+                        {[ _.each(variants, function(variant) { ]}
+                            <li class="card-content_variant">
+                                {[ if (id < 7) { ]}
+                                    <a class="js-to-question"
+                                       data-question="{{id + 1}}"
+                                       data-answer-index="{{id - 1}}"
+                                       data-answer-value="{{variant.value}}">
+                                        {{variant.text}}
+                                    </a>
+                                {[ } else { ]}
+                                    <a class="js-to-answer"
+                                       data-question="{{id + 1}}"
+                                       data-answer-index="{{id - 1}}"
+                                       data-answer-value="{{variant.value}}">
+                                        {{variant.text}}
+                                    </a>
+                                {[ } ]}
+                            </li>
+                        {[ }); ]}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </script>
+
+
+    <script id="answer__tmpl" type="text/x-javascript-tmpl">
+        <div class="card-content card-content__type-answer card-content__bordered">
+            <div class="card-content-wrapper">
+                <div class="card-content__title">
+                    Вы набрали {{count}} баллов!
+                </div>
+                <div class="card-content__text">
+                    {{text}}
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="card-button js-to-question" data-question="1">Заново</a>
+            </div>
+        </div>
+    </script>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/underscore.min.js"></script>
+    <script src="js/jquery.flip.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
