@@ -25,6 +25,7 @@
     margin: 100px auto;
 }
 
+
 #card-front, #card-back {
     background: #f1f6fc;
 }
@@ -39,6 +40,11 @@
     padding: 0;
     position: relative;
     background: #f1f6fc;
+}
+
+
+.card-content.card-loader {
+    height: 390px;
 }
 
 .card-content-wrapper {
