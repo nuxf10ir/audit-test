@@ -20,13 +20,13 @@
 
 
 .cardgame {
-    width: 821px;
-    height: 528px;
+    width: 700px;
+    height: 500px;
     margin: 100px auto;
 }
 
 #card-front, #card-back {
-    background: #fff;
+    background: #f1f6fc;
 }
 
 .card {
@@ -34,20 +34,15 @@
 }
 
 .card-content {
-    width: 693px;
-    height: 428px;
+    width: 700px;
+    height: 500px;
     padding: 0;
-    margin: 30px;
     position: relative;
-    background: #FFFFFF;
+    background: #f1f6fc;
 }
 
 .card-content-wrapper {
     padding: 30px 50px;
-}
-
-.card-content__bordered {
-    border: 1px solid red;
 }
 
 .card-content__title {
@@ -67,6 +62,10 @@
     margin: 40px 0 20px;
 }
 
+.card-content__type-question .card-content__text {
+    margin-top: 40px;
+}
+
 .card-content__text {
     font-size: 20px;
     line-height: 24px;
@@ -75,12 +74,29 @@
 }
 
 .card-content__type-start .card-content__text {
-    font-size: 16px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .card-content__type-answer .card-content__text {
     font-size: 18px;
+}
+
+.card-content__type-answer .card-content__result-wrong,
+.card-content__type-answer .card-content__result-normal,
+.card-content__type-answer .card-content__result-right {
+    display: block;
+    width: 96px;
+    height: 86px;
+    margin: 20px auto 50px;
+}
+
+.card-content__type-answer .card-content__result-wrong {
+    background: url(wrong.png) no-repeat 0 0;
+}
+
+.card-content__type-answer .card-content__result-right {
+    background: url(right.png) no-repeat 0 0;
 }
 
 .card-footer {
@@ -95,11 +111,11 @@
     position: relative;
     top: 0;
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 24px;
     font-weight: 400;
     text-align: left;
-    background: antiquewhite;
+    background: #c8e0ff;
     padding: 5px 10px;
     margin: 0 -10px;
 }
@@ -108,16 +124,17 @@
     cursor: pointer;
     display: inline-block;
     padding: 10px 22px;
-    background: #fbe9e4;
-    border: 1px solid #ca4131;
+    background: #2e8cfd;
     box-sizing: content-box;
-    font-size: 19px;
+    font-size: 16px;
+    line-height: 24px;
     margin: 0 0 0 50px;
+    color: #fff;
+    border-radius: 4px;
 }
 
 .card-button:hover {
-    background: #ca4131;
-    color: #FFFFFF;
+    background: #265188;
 }
 
 .card-content_variants {
@@ -141,20 +158,22 @@
 
 .card-content_variant a {
     cursor: pointer;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ca4131;
     letter-spacing: .1px;
     padding: 9px 14px;
     display: block;
-    background: #fbe9e4;
+    background: #2f62a3;
+    color: #fff;
+    border-radius: 4px;
 }
 
 
 
 .card-content_variant a:hover {
-    background: #ca4131;
-    color: #FFFFFF;
+    background: #265188;
+}
+
+.card-content_variant a:active {
+    background: #1f426f;
 }
 
 .answers-list {

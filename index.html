@@ -23,13 +23,28 @@
                             </div>
                         </div>
                         <div id="card-back" class="back">
-                            <div class="card-content card-content__type-start card-content__bordered">
+                            <div class="card-content card-content__type-start">
                                 <div class="card-content-wrapper">
                                     <div class="card-content__title">
-                                        Калькулятор баллов: сочтут&nbsp;ли налоговики компанию &laquo;выгодоприобритателем&raquo; или &laquo;техничкой&raquo;
+                                        Бизнес-симулятор: подготовка к&nbsp;внутреннему аудиту и&nbsp;управление проверкой
                                     </div>
                                     <div class="card-content__text">
-                                        Ответьте на&nbsp;11&nbsp;вопросов и&nbsp;узнайте, сколько баллов получит компания, если инспекция заподозрит &laquo;схемный&raquo; вычет и&nbsp;какой статус ей&nbsp;в&nbsp;таком случае присвоят налоговики. По&nbsp;сумме баллов реального выгодоприобретателя будут отличать от&nbsp;технического звена. В&nbsp;основе расчета&nbsp;&mdash; методика, которую используют инспекторы.
+                                        <p>
+                                            Вы&nbsp;приступили к&nbsp;работе в&nbsp;компании &laquo;Альфа&raquo; и&nbsp;через полгода Вашей организации предстоит внутренний аудит.
+                                            В&nbsp;прошлый раз, при вашем предшественнике, проверка парализовала работу финансовой службы, сотрудники бухгалтерии и&nbsp;финансовой
+                                            лужбы из-за перерузки допустили несколько досадных ошибок.
+                                            Из-за недопониманий в&nbsp;отчете аудиторов также появилось несколько ложных замечаний.
+                                        </p>
+                                        <p>
+                                            На&nbsp;совещании генеральный директор просит за&nbsp;полгода провести предварительную работу, чтобы исключить такую ситуацию в&nbsp;будущем.
+                                            Предлагаем вам принять вызов и&nbsp;пройти тренировку в&nbsp;формате бизнес-игры. Вас ждет 6&nbsp;месяцев подготовки.
+                                        </p>
+                                        <p>
+                                            Ваша задача&nbsp;&mdash; сделать все, чтобы избежать критичной загрузки финансовой службы в&nbsp;процессе
+                                            проверки и&nbsp;не&nbsp;спровоцировать при этом замечания аудиторов.
+                                        </p>
+
+
                                     </div>
                                 </div>
                                 <div class="card-footer">
@@ -52,58 +67,65 @@
 
 
 
-        <div class="card-content card-content__type-question card-content__bordered">
+        <div class="card-content card-content__type-question">
 
             <div class="card-content-wrapper">
 
                 <div class="card-step">
-                    <span class="card-step__in">Вопрос {{id}} из 11</span>
+                    <span class="card-step__in">{{title}}</span>
                 </div>
 
-                <div class="card-content__title">
+                <div class="card-content__text">
                     {{text}}
                 </div>
-                <div class="card-content__text">
-                    <ul class="card-content_variants">
-                        {[ _.each(variants, function(variant) { ]}
-                            <li class="card-content_variant">
-                                {[ if (id < 7) { ]}
-                                    <a class="js-to-question"
-                                       data-question="{{id + 1}}"
-                                       data-answer-index="{{id - 1}}"
-                                       data-answer-value="{{variant.value}}">
-                                        {{variant.text}}
-                                    </a>
-                                {[ } else { ]}
-                                    <a class="js-to-answer"
-                                       data-question="{{id + 1}}"
-                                       data-answer-index="{{id - 1}}"
-                                       data-answer-value="{{variant.value}}">
-                                        {{variant.text}}
-                                    </a>
-                                {[ } ]}
-                            </li>
-                        {[ }); ]}
-                    </ol>
-                </div>
+
+                <ul class="card-content_variants">
+                    {[ _.each(variants, function(variant) { ]}
+                        <li class="card-content_variant">
+                            <a class="js-to-answer"
+                               data-question="{{id}}"
+                               data-answer="{{variant.answerId}}"
+                               data-score="{{variant.score}}">
+                                {{variant.text}}
+                            </a>
+                        </li>
+                    {[ }); ]}
+                </ul>
+
             </div>
         </div>
     </script>
 
-
     <script id="answer__tmpl" type="text/x-javascript-tmpl">
-        <div class="card-content card-content__type-answer card-content__bordered">
+        <div class="card-content card-content__type-answer">
             <div class="card-content-wrapper">
-                <div class="card-content__title">
-                    Вы набрали {{count}} баллов!
-                </div>
+                <div class="card-content__result-{{type}}"></div>
                 <div class="card-content__text">
                     {{text}}
                 </div>
             </div>
             <div class="card-footer">
-                <a class="card-button js-to-question" data-question="1">Заново</a>
+                <a class="card-button js-to-question" data-question="{{nextQuestion}}">{{buttonText}}</a>
             </div>
+        </div>
+    </script>
+
+
+    <script id="finish__tmpl" type="text/x-javascript-tmpl">
+        <div class="card-content card-content__type-answer">
+            <div class="card-content-wrapper">
+                <div class="card-content__title">
+                    {{result}}
+                </div>
+                <div class="card-content__text">
+                    {{comment}}
+                </div>
+            </div>
+            {[ if (score < 10) { ]}
+                <div class="card-footer">
+                    <a class="card-button js-to-question" data-question="1">Попробовать еще раз</a>
+                </div>
+            {[ } ]}
         </div>
     </script>
 

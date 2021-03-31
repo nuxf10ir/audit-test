@@ -6,55 +6,61 @@ _.templateSettings = {
 jQuery.fn.cardGame = function(data) {
     var $self = $(this),
         questionsData = data.questionsData,
+        answersData = data.answersData,
         $card = $("#card", $self),
         $front = $("#card-front", $card),
         $back = $("#card-back", $card),
         questionTmpl = _.template($("#question__tmpl").html()),
         answerTmpl = _.template($("#answer__tmpl").html()),
         flipDirection = true,
-        answers = new Array(6);
+        score = 0;
+
+    questionTmpl = _.template($("#question__tmpl").html()),
+        answerTmpl = _.template($("#answer__tmpl").html()),
+        finishTmpl = _.template($("#finish__tmpl").html());
 
     $card.flip({
         trigger: 'manual',
         axis: 'y'
     });
 
-    $card.on("click.cardGame", ".js-to-question, .js-to-answer", function(e) {
+    $card.on("click.cardGame", ".js-to-question", function(e) {
         var $this = $(e.currentTarget),
-            questionId = $this.data("question"),
-            answerIndex = $this.data("answerIndex"),
-            answerValue= $this.data("answerValue"),
-            $side = flipDirection ? $front : $back;
+            questionId = $this.data("question");
 
-        flipDirection = !flipDirection;
-        if (answerIndex != null) {
-            answers[answerIndex] = answerValue;
-        }
-        if (questionId <= 11) {
-            $side.html(questionTmpl(_.extend(questionsData[questionId], {id: questionId})));
-        } else {
-            var count = _.reduce(answers, function(memo, num){ return memo + num; }, 0);
-            var text = "";
-            switch (true) {
-                case count >= 50:
-                    text = 'По&nbsp;мнению инспекции Ваша компания&nbsp;&mdash; &laquo;Выгодоприобетатель&raquo;. Ее&nbsp;точно не&nbsp;признают &laquo;техничкой&raquo;.';
-                    break;
-                case count >= 20:
-                    text = 'Статус компании по&nbsp;бальной системе инспекции&nbsp;&mdash; предполагаемый &laquo;выгодоприобретатель&raquo;. Вполне возможно инспекторы продолжат собирать инормацию, в&nbsp;том числе по&nbsp;связанным с&nbsp;компанией юрлицам, чтобы убедиться что она точно не&nbsp;выполняет &laquo;техническую&raquo; роль.';
-                    break;
-                default:
-                    text = 'Согласно внутреннему регламенту налоговой компания отвечает признакам &laquo;Технического звена&raquo;. Безопаснее будет поработать над статусом компании. <br/>Исправить положение помогут критерии, которые вшиты в&nbsp;алгоритм этого калькулятора. Их&nbsp;можно скачать выше калькулятора в&nbsp;мобильной версии журнала, и&nbsp;справа на&nbsp;полях, если читаете статью с&nbsp;компьютера.';
-                    break;
-
+        if (questionId === -1) {
+            var result, comment;
+            if (score >= 10) {
+                result = "Браво! Вы&nbsp;блестяще справились и&nbsp;в&nbsp;этот раз аудит точно пройдет без неприятных сюрпризов.";
+                comment = "Вы&nbsp;готовы к&nbsp;финальному тесту, пройдите его, чтобы закрепить полученные знания и&nbsp;получить сертификат.";
+            } else if (score >= 7 && score < 10 ) {
+                result = "Отлично! Эффективность подготовки составила 80%. Это хороший результат, но&nbsp;нет предела совершенству.";
+                comment = "Вы&nbsp;можете перейти к&nbsp;финальному тесту, либо попробовать пройти квест по&nbsp;подготовке к&nbsp;проверке еще раз, чтобы добиться лучшего результата.";
+            } else {
+                result = "Вы&nbsp;справились! Однако, эффективность подготовки составила всего&nbsp;50%.";
+                comment = "Вы&nbsp;можете перейти к&nbsp;финальному тесту, либо попробовать пройти квест по&nbsp;подготовке к&nbsp;проверке еще раз, чтобы добиться лучшего результата.";
             }
-            var tmplData = {
-                count: count,
-                text: text
-            };
-            $side.html(answerTmpl(tmplData));
+            $front.html(finishTmpl({score, result, comment}));
+            score = 0;
+        } else {
+            $front.html(questionTmpl(_.extend(questionsData[questionId], {id: questionId})));
         }
-        $card.flip(flipDirection);
+
+
+        $card.flip(false);
+
     });
+
+    $card.on("click.cardGame", ".js-to-answer", function(e) {
+        var $this = $(e.currentTarget),
+            questionId = $this.data("question");
+        answerId = $this.data("answer");
+        score += parseInt($this.data("score"), 10);
+
+        $back.html(answerTmpl(answersData[questionId][answerId]));
+        $card.flip(true);
+    });
+
     return {
         init: function () {
             setTimeout(function () {
@@ -64,7 +70,7 @@ jQuery.fn.cardGame = function(data) {
     }
 };
 
-$("#cardgame").cardGame(data).init();
+$("#cardgame").cardGame(gameData).init();
 
 
 
